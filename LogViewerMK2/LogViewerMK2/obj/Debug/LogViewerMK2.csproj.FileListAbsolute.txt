@@ -1,0 +1,14 @@
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\bin\Debug\LogViewerMK2.exe.config
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\bin\Debug\LogViewerMK2.exe
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\bin\Debug\LogViewerMK2.pdb
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\bin\Debug\Interop.WMPLib.dll
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\bin\Debug\AxInterop.WMPLib.dll
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\LogViewerMK2.csprojResolveAssemblyReference.cache
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\Interop.WMPLib.dll
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\AxInterop.WMPLib.dll
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\LogViewerMK2.csproj.ResolveComReference.cache
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\LogViewerMK2.Form1.resources
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\LogViewerMK2.Properties.Resources.resources
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\LogViewerMK2.csproj.GenerateResource.Cache
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\LogViewerMK2.exe
+c:\users\shuji\documents\visual studio 2012\Projects\LogViewerMK2\LogViewerMK2\obj\Debug\LogViewerMK2.pdb
