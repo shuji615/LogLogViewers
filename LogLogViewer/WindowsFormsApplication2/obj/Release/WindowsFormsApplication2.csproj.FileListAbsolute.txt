@@ -15,3 +15,10 @@ C:\Users\shuji\Documents\Visual Studio 2012\Projects\LogLogViewer\WindowsFormsAp
 C:\Users\shuji\Documents\Visual Studio 2012\Projects\LogLogViewer\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.csprojResolveAssemblyReference.cache
 C:\Users\shuji\Documents\Visual Studio 2012\Projects\LogLogViewer\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.wait.resources
 C:\Users\shuji\Documents\Visual Studio 2012\Projects\LogLogViewer\WindowsFormsApplication2\obj\Release\Interop.Shell32.dll
+C:\Users\shuji\Documents\Visual Studio 2012\Projects\Viewers\LogLogViewer\WindowsFormsApplication2\bin\Release\WindowsFormsApplication2.exe.config
+C:\Users\shuji\Documents\Visual Studio 2012\Projects\Viewers\LogLogViewer\WindowsFormsApplication2\obj\Release\Interop.Shell32.dll
+C:\Users\shuji\Documents\Visual Studio 2012\Projects\Viewers\LogLogViewer\WindowsFormsApplication2\obj\Release\Interop.WMPLib.dll
+C:\Users\shuji\Documents\Visual Studio 2012\Projects\Viewers\LogLogViewer\WindowsFormsApplication2\obj\Release\AxInterop.WMPLib.dll
+C:\Users\shuji\Documents\Visual Studio 2012\Projects\Viewers\LogLogViewer\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.csproj.ResolveComReference.cache
+C:\Users\shuji\Documents\Visual Studio 2012\Projects\Viewers\LogLogViewer\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.exe
+C:\Users\shuji\Documents\Visual Studio 2012\Projects\Viewers\LogLogViewer\WindowsFormsApplication2\obj\Release\WindowsFormsApplication2.pdb

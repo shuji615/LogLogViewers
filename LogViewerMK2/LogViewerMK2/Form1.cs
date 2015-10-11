@@ -23,6 +23,7 @@ namespace LogViewerMK2
         List<string> scenes_start_l = new List<string>();
         List<string> scenes_end_l = new List<string>();
         int[] digest_meta;
+        double timer_stop_time;
 
         public Form1()
         {
@@ -198,10 +199,25 @@ namespace LogViewerMK2
         {
             if (listView1.SelectedItems.Count > 0)
             {
-                string time = scenes_start_l[int.Parse(listView1.SelectedItems[0].Text) - 1];
-                axWindowsMediaPlayer1.Ctlcontrols.currentPosition = double.Parse(time);
+                //string time = scenes_start_l[int.Parse(listView1.SelectedItems[0].Text) - 1];
+                //axWindowsMediaPlayer1.Ctlcontrols.currentPosition = double.Parse(time);
+                string tmp = listView1.SelectedItems[0].SubItems[1].Text;
+                axWindowsMediaPlayer1.Ctlcontrols.currentPosition = DecimalToFull(listView1.SelectedItems[0].SubItems[1].Text);
                 axWindowsMediaPlayer1.Ctlcontrols.play();
+
+                timer_stop_time = DecimalToFull(listView1.SelectedItems[0].SubItems[2].Text);
+                timer1.Enabled = true;
             }
+        }
+
+        private double DecimalToFull(string time)
+        {
+            string[] stArrayData = time.Split('：');
+            return (double.Parse(stArrayData[0])*60 + double.Parse(stArrayData[1]));
+        }
+        string FullToDecimal(double time)
+        {
+            return (int)(time / 60) + "：" + time % 60;  
         }
 
         private void ファイルToolStripMenuItem_Click(object sender, EventArgs e)
@@ -285,6 +301,14 @@ namespace LogViewerMK2
             listView1.Items.Remove(draggedItem);
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (axWindowsMediaPlayer1.Ctlcontrols.currentPosition > timer_stop_time+1)
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
+                timer1.Enabled = false;
+            }
+        }
     }
 
 }
