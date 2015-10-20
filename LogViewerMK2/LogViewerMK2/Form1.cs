@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using WAVE_file;                                        // waveファイルの操作に必要
+// waveファイルの操作に必要
 
 namespace LogViewerMK2
 {
@@ -24,6 +20,10 @@ namespace LogViewerMK2
         List<string> scenes_end_l = new List<string>();
         int[] digest_meta;
         double timer_stop_time;
+        double timer_jump_time;
+        int digest_number;
+        
+
 
         public Form1()
         {
@@ -98,12 +98,12 @@ namespace LogViewerMK2
 
                     int tmp_time;
 
-                    for (int i = 3; i + 1 < stArrayData.Length; i += 4)
+                    for (int i = 0; i + 1 < stArrayData.Length; i += 4)
                     {
-                        string[] tmp_list = { "", "", "" };
+                        string[] tmp_list = { "", "", "", "" };
                         tmp_listname = "No.";
                         tmp_listname += i / 4 + 1;
-                        tmp_list[0] += i / 4 + 1;
+                        tmp_list[1] += i / 4 + 1;
 
                         //                        tmp_listname += "\t｜ ";
                         if (i / 4 + 1 >= 10)
@@ -119,25 +119,25 @@ namespace LogViewerMK2
 
                         tmp_listname += tmp_time.ToString("00");
                         tmp_listname += "：";
-                        tmp_list[1] += tmp_time.ToString("00");
-                        tmp_list[1] += "：";
+                        tmp_list[2] += tmp_time.ToString("00");
+                        tmp_list[2] += "：";
 
                         tmp_time = (int)double.Parse(stArrayData[i]) % 60;
                         tmp_listname += tmp_time.ToString("00");
-                        tmp_list[1] += tmp_time.ToString("00");
+                        tmp_list[2] += tmp_time.ToString("00");
 
                         tmp_listname += "―";
 
                         tmp_time = (int)double.Parse(stArrayData[i + 1]) / 60;
                         tmp_listname += tmp_time.ToString("00");
                         tmp_listname += "：";
-                        tmp_list[2] += tmp_time.ToString("00");
-                        tmp_list[2] += "：";
+                        tmp_list[3] += tmp_time.ToString("00");
+                        tmp_list[3] += "：";
 
 
                         tmp_time = (int)double.Parse(stArrayData[i + 1]) % 60;
                         tmp_listname += tmp_time.ToString("00");
-                        tmp_list[2] += tmp_time.ToString("00");
+                        tmp_list[3] += tmp_time.ToString("00");
 
                         listView1.Items.Add(new ListViewItem(tmp_list));
 
@@ -201,14 +201,23 @@ namespace LogViewerMK2
             {
                 //string time = scenes_start_l[int.Parse(listView1.SelectedItems[0].Text) - 1];
                 //axWindowsMediaPlayer1.Ctlcontrols.currentPosition = double.Parse(time);
-                string tmp = listView1.SelectedItems[0].SubItems[1].Text;
-                axWindowsMediaPlayer1.Ctlcontrols.currentPosition = DecimalToFull(listView1.SelectedItems[0].SubItems[1].Text);
+                axWindowsMediaPlayer1.Ctlcontrols.currentPosition = DecimalToFull(listView1.SelectedItems[0].SubItems[2].Text);
                 axWindowsMediaPlayer1.Ctlcontrols.play();
 
-                timer_stop_time = DecimalToFull(listView1.SelectedItems[0].SubItems[2].Text);
-                timer1.Enabled = true;
+                timer_stop_time = DecimalToFull(listView1.SelectedItems[0].SubItems[3].Text);
+
+                if (checkBox1.Checked == false)
+                {
+                    timer1.Enabled = true;
+                }
+                else
+                {
+                    timer2.Enabled = true;
+                }
             }
+
         }
+
 
         private double DecimalToFull(string time)
         {
@@ -303,12 +312,89 @@ namespace LogViewerMK2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (axWindowsMediaPlayer1.Ctlcontrols.currentPosition > timer_stop_time+1)
+            if (axWindowsMediaPlayer1.Ctlcontrols.currentPosition > timer_stop_time)
             {
                 axWindowsMediaPlayer1.Ctlcontrols.pause();
                 timer1.Enabled = false;
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            listView1.CheckBoxes = true;
+        }
+
+        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            double digesttime = 0;
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                if (listView1.Items[i].Checked == true)
+                {
+                    digesttime += DecimalToFull(listView1.Items[i].SubItems[3].Text) - DecimalToFull(listView1.Items[i].SubItems[2].Text);
+                }
+            }
+            textBox1.Text = ((int)digesttime / 60).ToString();
+            textBox2.Text = ((int)digesttime % 60).ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (axWindowsMediaPlayer1.Ctlcontrols.currentPosition > timer_stop_time)
+            {
+                int selectindex = -1;
+                for (int i = listView1.SelectedItems[0].Index+1  ; i < listView1.Items.Count; i++)
+                {
+                    if (listView1.Items[i].Checked == true)
+                    {
+                        selectindex = i;
+                        break;
+                    }
+                }
+                if (selectindex == -1)
+                {
+                    checkBox1.Checked = false;
+                }
+                else
+                {
+                    timer2.Enabled = false;
+                    int tmpindex = listView1.SelectedItems[0].Index;
+                    listView1.Items[tmpindex].Selected = false;
+                    listView1.Items[selectindex].Selected = true;
+                }
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == false)
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
+                timer2.Enabled = false;
+            }
+            else
+            {
+                this.listView1.Focus();
+                int selected_first = -1;
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    if (listView1.Items[i].Checked == true)
+                    {
+                        selected_first = i;
+                        break;
+                    }
+                }
+                if (selected_first != -1)
+                {
+                    listView1.Items[selected_first].Selected = true;
+                }
+            }
+        }
+
     }
 
 }
