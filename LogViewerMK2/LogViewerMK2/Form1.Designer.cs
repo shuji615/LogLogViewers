@@ -47,6 +47,9 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.編集EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.リスト全選択SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.risutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +70,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ファイルToolStripMenuItem});
+            this.ファイルToolStripMenuItem,
+            this.編集EToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1214, 32);
@@ -110,7 +114,6 @@
             // 
             // listView1
             // 
-            this.listView1.AllowDrop = true;
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.CheckBoxes = true;
@@ -121,9 +124,10 @@
             this.columnHeader5});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(994, 127);
+            this.listView1.Location = new System.Drawing.Point(994, 145);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(212, 547);
+            this.listView1.Size = new System.Drawing.Size(212, 529);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -212,6 +216,30 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // 編集EToolStripMenuItem
+            // 
+            this.編集EToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.リスト全選択SToolStripMenuItem,
+            this.risutoToolStripMenuItem});
+            this.編集EToolStripMenuItem.Font = new System.Drawing.Font("Meiryo UI", 11F);
+            this.編集EToolStripMenuItem.Name = "編集EToolStripMenuItem";
+            this.編集EToolStripMenuItem.Size = new System.Drawing.Size(126, 28);
+            this.編集EToolStripMenuItem.Text = "リスト編集(&L)";
+            // 
+            // リスト全選択SToolStripMenuItem
+            // 
+            this.リスト全選択SToolStripMenuItem.Name = "リスト全選択SToolStripMenuItem";
+            this.リスト全選択SToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.リスト全選択SToolStripMenuItem.Text = "全選択(&S)";
+            this.リスト全選択SToolStripMenuItem.Click += new System.EventHandler(this.全選択SToolStripMenuItem_Click);
+            // 
+            // risutoToolStripMenuItem
+            // 
+            this.risutoToolStripMenuItem.Name = "risutoToolStripMenuItem";
+            this.risutoToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.risutoToolStripMenuItem.Text = "全解除(&U)";
+            this.risutoToolStripMenuItem.Click += new System.EventHandler(this.全解除ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -255,6 +283,9 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripMenuItem 編集EToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem リスト全選択SToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem risutoToolStripMenuItem;
     }
 }
 

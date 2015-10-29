@@ -22,8 +22,8 @@ namespace LogViewerMK2
         double timer_stop_time;
         double timer_jump_time;
         int digest_number;
-        
 
+        List<double[]> pickuptimes = new List<double[]>();
 
         public Form1()
         {
@@ -86,6 +86,7 @@ namespace LogViewerMK2
 
                 using (StreamReader sr = new StreamReader(filepath, Encoding.GetEncoding("Shift_JIS")))
                 {
+
                     listView1.Items.Clear();
 
                     //全行読み込み(行単位のstring配列)
@@ -100,6 +101,11 @@ namespace LogViewerMK2
 
                     for (int i = 0; i + 1 < stArrayData.Length; i += 4)
                     {
+                        double[] tmp_pickuptimes = new double[2];
+                        tmp_pickuptimes[0] = double.Parse(stArrayData[i]);
+                        tmp_pickuptimes[1] = double.Parse(stArrayData[i+1]);
+                        pickuptimes.Add(tmp_pickuptimes);
+
                         string[] tmp_list = { "", "", "", "" };
                         tmp_listname = "No.";
                         tmp_listname += i / 4 + 1;
@@ -201,10 +207,10 @@ namespace LogViewerMK2
             {
                 //string time = scenes_start_l[int.Parse(listView1.SelectedItems[0].Text) - 1];
                 //axWindowsMediaPlayer1.Ctlcontrols.currentPosition = double.Parse(time);
-                axWindowsMediaPlayer1.Ctlcontrols.currentPosition = DecimalToFull(listView1.SelectedItems[0].SubItems[2].Text);
+                axWindowsMediaPlayer1.Ctlcontrols.currentPosition = pickuptimes[listView1.SelectedItems[0].Index][0];
                 axWindowsMediaPlayer1.Ctlcontrols.play();
 
-                timer_stop_time = DecimalToFull(listView1.SelectedItems[0].SubItems[3].Text);
+                timer_stop_time = pickuptimes[listView1.SelectedItems[0].Index][1];
 
                 if (checkBox1.Checked == false)
                 {
@@ -322,6 +328,8 @@ namespace LogViewerMK2
         private void Form1_Load(object sender, EventArgs e)
         {
             listView1.CheckBoxes = true;
+            timer1.Interval = 10;
+            timer2.Interval = 10;
         }
 
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -394,6 +402,35 @@ namespace LogViewerMK2
                 }
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = true;
+            }
+        }
+
+        private void 全選択SToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = true;
+            }
+        }
+
+        private void 全解除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                listView1.Items[i].Checked = false;
+            }
+        }
+
 
     }
 
